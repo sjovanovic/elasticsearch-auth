@@ -1,16 +1,17 @@
 package org.codelibs.elasticsearch.auth;
 
-import static org.codelibs.elasticsearch.runner.ElasticsearchClusterRunner.newConfigs;
-
-import java.util.Map;
-
 import junit.framework.TestCase;
-
 import org.codelibs.elasticsearch.runner.ElasticsearchClusterRunner;
 import org.codelibs.elasticsearch.runner.net.Curl;
 import org.codelibs.elasticsearch.runner.net.CurlResponse;
-import org.elasticsearch.common.settings.ImmutableSettings.Builder;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
+
+import java.util.Map;
+
+import static org.codelibs.elasticsearch.runner.ElasticsearchClusterRunner.newConfigs;
+
+//import org.elasticsearch.common.settings.ImmutableSettings.Builder;
 
 public class AuthPluginTest extends TestCase {
 
@@ -22,6 +23,7 @@ public class AuthPluginTest extends TestCase {
         runner = new ElasticsearchClusterRunner();
 
         // create ES nodes
+        /*
         runner.onBuild(new ElasticsearchClusterRunner.Builder() {
             @Override
             public void build(final int number, final Builder settingBuilder) {
@@ -30,6 +32,19 @@ public class AuthPluginTest extends TestCase {
                 newConfigs()
                         .clusterName("es-auth" + System.currentTimeMillis())
                         .ramIndexStore().numOfNode(1));
+        */
+
+        // create ES nodes
+        runner.onBuild(new ElasticsearchClusterRunner.Builder() {
+            @Override
+            public void build(int index, Settings.Builder settingsBuilder) {
+
+            }
+        }).build(newConfigs()
+                    .clusterName("es-auth" + System.currentTimeMillis())
+                    .numOfNode(1));
+
+
 
         // wait for yellow status
         runner.ensureYellow();

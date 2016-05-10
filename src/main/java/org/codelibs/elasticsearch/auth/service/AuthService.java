@@ -1,16 +1,7 @@
 package org.codelibs.elasticsearch.auth.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.UUID;
+//import io.netty.handler.codec.http.HttpHeaders;
+//import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.codelibs.elasticsearch.auth.AuthException;
@@ -23,7 +14,6 @@ import org.codelibs.elasticsearch.auth.util.MapUtil;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
-import org.elasticsearch.action.admin.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.refresh.RefreshResponse;
@@ -32,11 +22,9 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.common.netty.handler.codec.http.HttpHeaders;
-import org.elasticsearch.common.netty.handler.codec.http.cookie.Cookie;
-import org.elasticsearch.common.netty.handler.codec.http.cookie.ServerCookieDecoder;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestController;
@@ -45,6 +33,18 @@ import org.elasticsearch.rest.RestRequest.Method;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.jboss.netty.handler.codec.http.HttpHeaders;
+import org.jboss.netty.handler.codec.http.cookie.Cookie;
+import org.jboss.netty.handler.codec.http.cookie.ServerCookieDecoder;
+
+import java.util.*;
+
+//import io.netty.handler.codec.http.cookie.Cookie;
+
+//import org.elasticsearch.action.admin.cluster.health.ClusterHealthStatus;
+//import org.elasticsearch.common.netty.handler.codec.http.HttpHeaders;
+//import org.elasticsearch.common.netty.handler.codec.http.cookie.Cookie;
+//import org.elasticsearch.common.netty.handler.codec.http.cookie.ServerCookieDecoder;
 
 public class AuthService extends AbstractLifecycleComponent<AuthService> {
     private static final String DEFAULT_CONSTRAINT_TYPE = "constraint";

@@ -10,5 +10,6 @@ public class AuthModule extends AbstractModule {
     protected void configure() {
         bind(AuthService.class).asEagerSingleton();
         bind(IndexAuthenticator.class).asEagerSingleton();
+
     }
 }
